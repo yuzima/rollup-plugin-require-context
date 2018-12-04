@@ -61,8 +61,9 @@ module.exports = function gernerateRequireContextCode(code, id, line) {
       return Object.keys(map);
     }
     return req;
-  })();
+  })()
   `;
-  const requireCode = line.replace(/require\.context\s*\(.*\);*/, reqFunc);
-  return code.replace(line, [importCode, requireCode].join('\n'));
+  const requireCode = line.replace(/require\.context\s*\(.*?\)/, reqFunc);
+  code = importCode + code;
+  return code.replace(line, requireCode);
 };

@@ -15,7 +15,7 @@ module.exports = function plugin(options = {}) {
       if (!filter(id) || !hasRequireContext(code)) {
         return;
       }
-      const requireContextReg = /[var|const|let].*=.*require\.context\s*\(.*\);*/g;
+      const requireContextReg = /require\.context\s*\(.*?\)/g;
       const arr = code.match(requireContextReg);
 
       arr.map((line) => {
